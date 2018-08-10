@@ -1,0 +1,22 @@
+﻿@using OnlineShopWithShoppingCart.Models
+@using Microsoft.AspNet.Identity
+
+    @{
+        if (User.Identity.IsAuthenticated)
+
+        {
+            var db = new ApplicationDbContext();
+            var userid = User.Identity.GetUserId();
+            var currentuser = db.Users.Where(a => a.Id == userid).SingleOrDefault();
+            if (currentuser.UserName == "admin@gmail.com")
+            {
+
+                <li>@Html.ActionLink("ادارة المنتجات", "Index", "Debartments")</li>
+                <li>@Html.ActionLink("ادارة الأقسام", "Index", "Categories")</li>
+
+
+            }
+
+        }
+
+    }

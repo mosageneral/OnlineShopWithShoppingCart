@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OnlineShopWithShoppingCart.Models.Category>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Dev / Mosa Hasn Mosa</h1>
+    <p class="lead">Another Site Done By Me  </p>
+    <p><a href="https://www.facebook.com/mosa.hasn.5" target="_blank" class="btn btn-primary btn-lg">follow me on facebook &raquo;</a></p>
+</div>
+
+
+
+
+
+
+<div panel panel-default >
+    @foreach (var item in Model)
+    {
+        <h1 class="panel-heading">@Html.DisplayFor(modelItem => item.Name )</h1>
+        <div class="panel-body">
+            @foreach (var subitem in item.Debartments )
+            {
+                <div class="col-md-4">
+                    <h2>@Html.DisplayFor(modelItem => subitem.Name)</h2>
+                    <img class="thumbnail " src="~/upload/@Html.DisplayFor(modelItem =>subitem.Image)" />
+                    <p>@Html.DisplayFor(modelItem => subitem.Price) $</p>
+
+                    @Html.ActionLink("اشتري ", "OrderNow","ShoppingCart", new { Id = subitem.Id }, new { @class = "btn btn-primary" })
+                </div>
+            }
+        </div>
+    }
+</div> 
